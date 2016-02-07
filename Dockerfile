@@ -5,6 +5,8 @@ MAINTAINER Camil Blanaru <camil@edka.io>
 RUN requirements="libmcrypt-dev g++ libicu-dev libmcrypt4 libicu52 zlib1g-dev git" \
     && apt-get update && apt-get install -y $requirements \
     && docker-php-ext-install pdo_mysql \
+    && docker-php-ext-install mysql \
+    && docker-php-ext-install mysqli \
     && docker-php-ext-install mcrypt \
     && docker-php-ext-install mbstring \
     && docker-php-ext-install intl \
@@ -13,7 +15,7 @@ RUN requirements="libmcrypt-dev g++ libicu-dev libmcrypt4 libicu52 zlib1g-dev gi
     && requirementsToRemove="libmcrypt-dev g++ libicu-dev zlib1g-dev" \
     && apt-get purge --auto-remove -y $requirementsToRemove \
     && rm -rf /var/lib/apt/lists/*
-    
+
 #install gd
 RUN buildRequirements="libpng12-dev libjpeg-dev libfreetype6-dev" \
     	&& apt-get update && apt-get install -y ${buildRequirements} \
