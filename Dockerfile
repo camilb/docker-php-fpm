@@ -12,7 +12,7 @@ RUN requirements="libmcrypt-dev g++ libicu-dev libmcrypt4  zlib1g-dev git wget v
     && docker-php-ext-install intl \
     && docker-php-ext-install json \
     && docker-php-ext-install zip \
-    && requirementsToRemove="libmcrypt-dev g++ libicu-dev zlib1g-dev" \
+    && requirementsToRemove="libmcrypt-dev g++ zlib1g-dev" \
     && apt-get purge --auto-remove -y $requirementsToRemove \
     && rm -rf /var/lib/apt/lists/*
 
@@ -25,7 +25,7 @@ RUN buildRequirements="libpng12-dev libjpeg-dev libfreetype6-dev" \
     	&& rm -rf /var/lib/apt/lists/*
 
 #copy install script
-COPY couchbase-csdk-setup /usr/local/src
+COPY couchbase-csdk-setup /usr/local/src/
 
 # Install Couchbase C-library
 RUN echo "deb http://packages.couchbase.com/ubuntu wheezy wheezy/main" >> /etc/apt/sources.list \
