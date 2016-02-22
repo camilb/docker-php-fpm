@@ -62,7 +62,7 @@ WORKDIR /usr/share/nginx/html
 
 #Change www-data UID
 RUN usermod -u 1000 www-data \
-    && grooupmod -g 1000 www-data
+    && groupmod -g 1000 www-data
 
 #Add entrypoint
 COPY docker-entrypoint.sh /entrypoint.sh
