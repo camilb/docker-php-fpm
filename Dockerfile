@@ -23,7 +23,7 @@ RUN buildRequirements="libpng12-dev libjpeg-dev libfreetype6-dev" \
     	&& docker-php-ext-install gd \
     	&& apt-get purge -y ${buildRequirements} \
     	&& rm -rf /var/lib/apt/lists/*
-      
+
 #install xdebug
 RUN yes | pecl install xdebug \
     && echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug.ini \
@@ -41,6 +41,10 @@ COPY config/php-fpm.conf /usr/local/etc/
 
 #add custom php.ini
 COPY config/php.ini /usr/local/etc/php/
+
+#Change www-data UID
+RUN usermod -u 1000 www-data \
+    && groupmod -g 1000 www-data
 
 # Setup Volume
 VOLUME ["/usr/share/nginx/html"]
