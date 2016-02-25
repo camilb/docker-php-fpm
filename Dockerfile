@@ -1,4 +1,4 @@
-FROM php:5.6-fpm
+FROM php:5.5-fpm
 MAINTAINER Camil Blanaru <camil@edka.io>
 
 #install laravel requirements and aditional extensions
