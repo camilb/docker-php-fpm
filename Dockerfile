@@ -51,9 +51,6 @@ COPY config/php-fpm.conf /usr/local/etc/
 #add custom php.ini
 COPY config/php.ini /usr/local/etc/php/
 
-#enable couchbase extension
-RUN echo "extension=/usr/local/lib/php/extensions/no-debug-non-zts-20131226/couchbase.so" >> /usr/local/etc/php/php.ini
-
 # Setup Volume
 VOLUME ["/usr/share/nginx/html"]
 
