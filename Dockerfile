@@ -26,6 +26,10 @@ COPY config/php-fpm.conf /usr/local/etc/
 #add custom php.ini
 COPY config/php.ini /usr/local/etc/php/
 
+#Change www-data UID
+RUN usermod -u 1000 www-data \
+    && groupmod -g 1000 www-data
+
 # Setup Volume
 VOLUME ["/usr/share/nginx/html"]
 
@@ -38,4 +42,3 @@ COPY docker-entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 
 CMD ["php-fpm"]
-
