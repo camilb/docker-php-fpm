@@ -5,6 +5,8 @@ MAINTAINER Camil Blanaru <camil@edka.io>
 RUN requirements="libmcrypt-dev g++ libicu-dev libmcrypt4 libicu52 zlib1g-dev git" \
     && apt-get update && apt-get install -y $requirements \
     && docker-php-ext-install pdo_mysql \
+    && docker-php-ext-install mysql \
+    && docker-php-ext-install mysqli \
     && docker-php-ext-install mcrypt \
     && docker-php-ext-install mbstring \
     && docker-php-ext-install intl \
@@ -27,10 +29,10 @@ COPY config/php-fpm.conf /usr/local/etc/
 COPY config/php.ini /usr/local/etc/php/
 
 # Setup Volume
-VOLUME ["/usr/share/nginx/html"]
+VOLUME ["/var/www/html"]
 
 #Set Workdir
-WORKDIR /usr/share/nginx/html
+WORKDIR /var/www/html
 
 #Add entrypoint
 COPY docker-entrypoint.sh /entrypoint.sh
