@@ -28,4 +28,4 @@ For example, if you need to install or remove php extensions, edit the Dockerfil
 
 or with port 9000 expose 
 
-	docker run --rm -d -p 9000:9000 camil/php-fpm
+	docker run --rm -d -p 9000:9000 copeus/php-fpm
