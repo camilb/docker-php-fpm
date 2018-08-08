@@ -2,7 +2,7 @@ FROM php:5.6-fpm
 MAINTAINER Oleg Kopachovets <ok@procoders.tech>
 
 #install laravel requirements and aditional extensions
-RUN requirements="libmcrypt-dev g++ libicu-dev libmcrypt4 libicu52 zlib1g-dev git libcurl4-openssl-dev" \
+RUN requirements="libmcrypt-dev g++ libicu-dev libmcrypt4 libicu zlib1g-dev git libcurl4-openssl-dev" \
     && apt-get update && apt-get install -y $requirements \
     && docker-php-ext-install pdo_mysql \
     && docker-php-ext-install mysql \
@@ -12,10 +12,7 @@ RUN requirements="libmcrypt-dev g++ libicu-dev libmcrypt4 libicu52 zlib1g-dev gi
     && docker-php-ext-install intl \
     && docker-php-ext-install json \
     && docker-php-ext-install zip \
-    && docker-php-ext-install curl \
-    && requirementsToRemove="libmcrypt-dev g++ libicu-dev zlib1g-dev" \
-    && apt-get purge --auto-remove -y $requirementsToRemove \
-    && rm -rf /var/lib/apt/lists/*
+    && docker-php-ext-install curl
 
 #install composer globally
 RUN curl -sSL https://getcomposer.org/installer | php \
